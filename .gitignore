@@ -3,3 +3,7 @@
 
 # Ignore intermediate files
 .terraform
+
+# Ignore SSH keys
+ed_id
+ed_id.pub

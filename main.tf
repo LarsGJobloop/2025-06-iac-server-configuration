@@ -14,3 +14,8 @@ variable "hcloud_token" {
 provider "hcloud" {
   token = var.hcloud_token
 }
+
+resource "hcloud_ssh_key" "main" {
+  name       = "teacher"
+  public_key = file("./ed_id.pub")
+}
