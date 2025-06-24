@@ -7,3 +7,6 @@
 # Ignore SSH keys
 ed_id
 ed_id.pub
+
+# Ignore state files
+*tfstate*
