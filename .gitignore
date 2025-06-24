@@ -1,2 +1,5 @@
 # Ignore variables
 *tfvars
+
+# Ignore intermediate files
+.terraform
