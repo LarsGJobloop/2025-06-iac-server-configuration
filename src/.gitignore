@@ -1,0 +1,3 @@
+# Ignore intermdediate files
+obj
+bin
