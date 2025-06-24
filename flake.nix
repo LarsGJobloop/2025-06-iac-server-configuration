@@ -31,6 +31,7 @@
         default = pkgs.mkShell {
           packages = [
             pkgs.terraform
+            pkgs.dotnetCorePackages.sdk_9_0
           ];
 
           env = {
