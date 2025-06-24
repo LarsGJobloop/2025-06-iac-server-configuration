@@ -19,3 +19,16 @@ resource "hcloud_ssh_key" "main" {
   name       = "teacher"
   public_key = file("./ed_id.pub")
 }
+
+resource "hcloud_server" "server" {
+  name        = "teacher"
+
+  server_type = "cx22"
+  location = "hel1" # Finland
+
+  image       = "debian-12"
+
+  ssh_keys = [
+    hcloud_ssh_key.main.id
+  ]
+}
