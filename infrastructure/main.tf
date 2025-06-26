@@ -16,12 +16,6 @@ variable "hcloud_token" {
 }
 
 
-output "server_info" {
-  value = {
-    ipv4_address = hcloud_server.server.ipv4_address
-  }
-}
-
 variable "ssh_public_key" {
   type = string
 }
@@ -34,7 +28,7 @@ resource "hcloud_ssh_key" "main" {
 resource "hcloud_server" "server" {
   name = "teacher"
 
-  server_type = "cx22"
+  server_type = "cpx21"
   location    = "hel1" # Finland
 
   image = "debian-12"
@@ -44,4 +38,10 @@ resource "hcloud_server" "server" {
   ssh_keys = [
     hcloud_ssh_key.main.id
   ]
+}
+
+output "server_info" {
+  value = {
+    ipv4_address = hcloud_server.server.ipv4_address
+  }
 }
