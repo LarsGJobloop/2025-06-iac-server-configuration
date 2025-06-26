@@ -7,17 +7,28 @@ terraform {
   }
 }
 
-variable "hcloud_token" {
-  sensitive = true
-}
-
 provider "hcloud" {
   token = var.hcloud_token
 }
 
+variable "hcloud_token" {
+  sensitive = true
+}
+
+
+output "server_info" {
+  value = {
+    ipv4_address = hcloud_server.server.ipv4_address
+  }
+}
+
+variable "ssh_public_key" {
+  type = string
+}
+
 resource "hcloud_ssh_key" "main" {
   name       = "teacher"
-  public_key = file("./ed_id.pub")
+  public_key = var.ssh_public_key
 }
 
 resource "hcloud_server" "server" {
@@ -31,10 +42,4 @@ resource "hcloud_server" "server" {
   ssh_keys = [
     hcloud_ssh_key.main.id
   ]
-}
-
-output "server_info" {
-  value = {
-    ipv4_address = hcloud_server.server.ipv4_address
-  }
 }
