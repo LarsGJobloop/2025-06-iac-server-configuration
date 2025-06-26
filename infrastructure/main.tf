@@ -1,3 +1,4 @@
+# Provider configuration
 terraform {
   required_providers {
     hcloud = {
@@ -11,37 +12,29 @@ provider "hcloud" {
   token = var.hcloud_token
 }
 
+
+# Input variables (arguments)
 variable "hcloud_token" {
   sensitive = true
 }
-
 
 variable "ssh_public_key" {
   type = string
 }
 
-resource "hcloud_ssh_key" "main" {
-  name       = "teacher"
-  public_key = var.ssh_public_key
+
+# Configuration
+module "dotnet_app" {
+  source = "./dotnet-app"
+
+  repository = "https://github.com/LarsGJobloop/2025-06-iac-server-configuration.git"
+
+  # For debugging
+  ssh_public_key = var.ssh_public_key
 }
 
-resource "hcloud_server" "server" {
-  name = "teacher"
 
-  server_type = "cpx21"
-  location    = "hel1" # Finland
-
-  image = "debian-12"
-
-  user_data = file("./cloud-init.yaml")
-
-  ssh_keys = [
-    hcloud_ssh_key.main.id
-  ]
-}
-
-output "server_info" {
-  value = {
-    ipv4_address = hcloud_server.server.ipv4_address
-  }
+# Output variables (return values)
+output "app" {
+  value = module.dotnet_app.app_info
 }
