@@ -1,0 +1,26 @@
+#cloud-config
+
+# Get the latest updates on initialization
+package_update: true
+package_upgrade: true
+
+packages:
+  - git
+
+runcmd:
+  # Install .NET SDK 9.0 (you should use the .NET Runtime)
+  ## Add the Microsoft Apt Repository
+  - echo "Add Microsoft repository"
+  ## Update sources
+  - echo "Fethching updates"
+  ## Install the .NET SDK package
+  - echo "Installing the .NET SDK"
+
+  # Clone the source repository
+  - echo "Clonining the repository"
+
+  # Build/Publish the binary
+  - echo "Building the binary"
+
+  # Start the server
+  - echo "Starting the server"

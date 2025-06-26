@@ -95,6 +95,11 @@ For this we need:
     cd src
     dotnet publish
 
+## Noteworthy Directories and Files (on the server)
+
+- `/var/log`: Default directory that programs write logs to (usually configured by the server admin).
+- `/var/log/cloud-init-output.log`: Contains the cloud init logs, look here for errors and debugging.
+
 ## References
 
 - [Cloud Init](https://cloudinit.readthedocs.io/en/latest/index.html)

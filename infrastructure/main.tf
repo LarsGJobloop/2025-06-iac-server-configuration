@@ -32,12 +32,14 @@ resource "hcloud_ssh_key" "main" {
 }
 
 resource "hcloud_server" "server" {
-  name        = "teacher"
+  name = "teacher"
 
   server_type = "cx22"
-  location = "hel1" # Finland
+  location    = "hel1" # Finland
 
-  image       = "debian-12"
+  image = "debian-12"
+
+  user_data = file("./cloud-init.yaml")
 
   ssh_keys = [
     hcloud_ssh_key.main.id
