@@ -24,10 +24,15 @@ runcmd:
   - apt-get install -y dotnet-sdk-9.0
 
   # Clone the source repository
-  - echo "Clonining the repository"
+  - echo "Clonining the repository into /app/repo"
+  - mkdir /app
+  - git clone https://github.com/LarsGJobloop/2025-06-iac-server-configuration.git /app/repo
 
   # Build/Publish the binary
   - echo "Building the binary"
+  - cd /app/repo/src
+  - dotnet publish --output /app/binary
 
   # Start the server
   - echo "Starting the server"
+  - dotnet /app/binary/TestApi.dll # TODO! Run as background service
