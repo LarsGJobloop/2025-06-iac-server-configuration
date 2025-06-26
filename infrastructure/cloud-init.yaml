@@ -11,10 +11,17 @@ runcmd:
   # Install .NET SDK 9.0 (you should use the .NET Runtime)
   ## Add the Microsoft Apt Repository
   - echo "Add Microsoft repository"
+  - wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+  - sudo dpkg -i packages-microsoft-prod.deb
+  - rm packages-microsoft-prod.deb
+
   ## Update sources
   - echo "Fethching updates"
+  - apt-get update
+
   ## Install the .NET SDK package
   - echo "Installing the .NET SDK"
+  - apt-get install -y dotnet-sdk-9.0
 
   # Clone the source repository
   - echo "Clonining the repository"
