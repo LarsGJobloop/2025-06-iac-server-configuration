@@ -94,3 +94,8 @@ For this we need:
     ```sh
     cd src
     dotnet publish
+
+## References
+
+- [Cloud Init](https://cloudinit.readthedocs.io/en/latest/index.html)
+- [Terraform Modules](https://developer.hashicorp.com/terraform/language/modules)
